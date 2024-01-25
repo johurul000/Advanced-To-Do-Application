@@ -4,7 +4,9 @@
 Welcome to the Advanced To-Do Application - an intuitive and feature-rich task management tool designed to help you organize and prioritize your daily activities efficiently. This application offers a user-friendly interface and powerful functionalities to enhance productivity for individual users.
 
 ## Demo Video
-https://github.com/johurul000/Advanced-To-Do-Application/assets/90057499/cb80f5cc-c1f0-4e0b-8dfc-66ea0b76d7d5
+
+https://github.com/johurul000/Advanced-To-Do-Application/assets/90057499/52c0f78a-3984-4433-8bbe-d4a70e8863a1
+
 
 
 
