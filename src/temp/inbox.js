@@ -1,30 +1,3 @@
-
-document.addEventListener('DOMContentLoaded', function(){
-    const scrollContainer = document.querySelector('.inner_content')
-    const scrollLeftBtn = document.getElementById('leftScroll')
-    const scrollRightBtn = document.getElementById('rightScroll')
-
-    function updateButtonStates() {
-        const scrollLeft = scrollContainer.scrollLeft
-        const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth
-
-        scrollLeftBtn.disabled = scrollLeft == 0
-        scrollRightBtn.disabled = scrollLeft >= maxScrollLeft
-    }
-
-    scrollLeftBtn.addEventListener('click', function(){
-        scrollContainer.scrollBy({left: -900, behavior: 'smooth'})
-    })
-
-    scrollRightBtn.addEventListener('click', function(){
-        scrollContainer.scrollBy({left: 900, behavior: 'smooth'})
-    })
-
-    updateButtonStates()
-
-    scrollContainer.addEventListener('scroll', updateButtonStates)
-})
-
 document.addEventListener('DOMContentLoaded', function(){
 
     document.querySelectorAll('.menu').forEach(function(button){
@@ -35,11 +8,6 @@ document.addEventListener('DOMContentLoaded', function(){
     })
 
 })
-
-document.getElementById('hamburger-menu').addEventListener('click', function () {
-    const sidebar = document.querySelector('.sidebar-container');
-    sidebar.classList.toggle('active');
-});
 
 window.addEventListener('click', function(event){
     document.querySelectorAll('.select').forEach(function(menu){
@@ -62,73 +30,6 @@ function expandMenu(buttonElement) {
     }
 }
 
-
-function setupUpcomingModel(modalId, buttonElement){
-    var modal = document.getElementById(modalId);
-    console.log('setupmodec current')
-    modal.style.display = "block";
-
-    var formInternalHTML = ``
-
-    var currentDate = buttonElement.getAttribute('data-current-date')
-    console.log('Current Date: ', currentDate)
-    
-
-    var dateParts = currentDate.split('-'); 
-    var day = parseInt(dateParts[0], 10);
-    var month = parseInt(dateParts[1], 10) - 1; 
-    var year = parseInt(dateParts[2], 10);
-
-    
-    if (year < 100) {
-        year += 2000;
-    }
-
-    var parsedDate = new Date(year, month, day);
-    console.log('Parsed Date:', parsedDate);
-
-    if (isNaN(parsedDate.getTime())) {
-        console.error('Invalid Date Format');
-    } else {
-        
-        var timezoneOffset = parsedDate.getTimezoneOffset() * 60000; 
-        var adjustedDate = new Date(parsedDate.getTime() - timezoneOffset);
-
-        
-        var formattedDate = adjustedDate.toISOString().slice(0, 10);
-        console.log('Formatted Date:', formattedDate);
-    }
-
-    formInternalHTML = `
-    <div class="form-group">
-        
-        <input type="text" name="task_name" maxlength="200" class="task-name-class" placeholder="Task Name" required="" id="id_task_name">
-    </div>
-    <div class="form-group">
-        
-        <textarea name="description" cols="40" rows="4" class="description-class" placeholder="Description" id="id_description"></textarea>
-    </div>
-    <div class="form-group">
-        
-        <input type="date" name="due_date" class="due-date-class" placeholder="Due Date" id="id_due_date" value="${formattedDate}">
-    </div>
-    `
-
-    $('#addCurrentFormDiv').html(formInternalHTML)
-
-    var span = modal.getElementsByClassName("close")[0]
-
-    span.onclick = function() {
-        modal.style.display = "none"
-    };
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    };
-
-}
 
 
 function setupModal(modalId, isEdit, buttonElement) {
@@ -162,47 +63,20 @@ function setupModal(modalId, isEdit, buttonElement) {
 
         // console.log('code population start')
         var formInternalHTML = `
-            <div class="form-group">
-                <input 
-                    type="text" 
-                    name="task_name" 
-                    maxlength="200" 
-                    class="task-name-class" 
-                    placeholder="Task Name" 
-                    required="" 
-                    id="id_task_name" 
-                    value="${taskName}">
+            <div>
+            <input type="text" name="task_name" maxlength="200" class="task-name-class" placeholder="Task Name" required="" id="id_task_name" value="${taskName}">
+
             </div>
 
-            <div class="form-group">
-                <textarea 
-                    name="description" 
-                    cols="40" 
-                    rows="10" 
-                    class="description-class" 
-                    placeholder="Description" 
-                    id="id_description">${description}</textarea>
+            <div>
+                <textarea name="description" cols="40" rows="10" class="description-class" placeholder="Description" id="id_description">${description}</textarea>
+
             </div>
 
-            <div class="form-group">
-                <input 
-                    type="date" 
-                    name="due_date" 
-                    class="due-date-class" 
-                    placeholder="Due Date" 
-                    id="id_due_date" 
-                    value="${formattedDate}">
+            <div>
+                <input type="date" name="due_date" class="due-date-class" placeholder="Due Date" id="id_due_date" value="${formattedDate}">
             </div>
-
-           
-            <button 
-                type="submit" 
-                id="editTask" 
-                class="submit-btn"
-                value="${taskId}">
-                Edit Task
-            </button>
-            
+            <button type="submit" id="editTask" value="${taskId}">Edit Task</button>
         `
 
         $('#editFormDiv').html(formInternalHTML)
@@ -271,7 +145,6 @@ function updateTaskStatus(checkbox) {
 }
 
 
-
 $(document).ready(function(){
     $('#addTask').click(function(){
         $.ajax({
@@ -317,30 +190,6 @@ $(document).ready(function(){
     })
 })
 
-
-$(document).ready(function(){
-    $('#addCurrentInternal').on('submit', function(e){
-        e.preventDefault()
-
-        var formData = $(this).serialize()
-        // var taskId = $('#editTask').val()
-
-        $.ajax({
-            type: 'POST',
-            url: '/add-task/',
-            data: formData,
-            success: function(response){
-                console.log("Successfully updated")
-                window.location.reload(true)
-            },
-            error: function(response){
-                alert("Error updating the task, please try again.")
-            }
-
-        })
-    })
-})
-
 function deleteTask(buttonElement){
 
     if(!window.confirm('Are you sure you wnat to delete the task?')){
@@ -353,32 +202,6 @@ function deleteTask(buttonElement){
     $.ajax({
         type: 'POST',
         url: '/delete-task/' + taskId + '/',
-        data: {
-            'csrfmiddlewaretoken': csrfToken
-        },
-        success: function(response){
-            console.log('successfully deleted')
-            window.location.reload()
-        },
-        error: function(response){
-            console.log(response.error)
-        }
-    })
-
-
-}
-
-function logOut(buttonElement){
-
-    if(!window.confirm('Are you sure you wnat to logout?')){
-        return
-    }
-
-    var csrfToken = buttonElement.getAttribute('data-csrf')
-    
-    $.ajax({
-        type: 'POST',
-        url: '/logout/',
         data: {
             'csrfmiddlewaretoken': csrfToken
         },

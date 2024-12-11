@@ -13,7 +13,20 @@ class TaskForm(forms.ModelForm):
         }
 
         widgets = {
-            'due_date': DateInput(attrs={'type': 'date', 'class': 'due-date-class', 'placeholder': 'Due Date'}),
+            'task_name': forms.TextInput(attrs={
+                'class': 'task-name-class',
+                'placeholder': 'Task Name'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'description-class',
+                'placeholder': 'Description',
+                'rows': 4
+            }),
+            'due_date': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'due-date-class',
+                'placeholder': 'Due Date'
+            }),
         }
 
     def __init__(self, *args, **kwargs):

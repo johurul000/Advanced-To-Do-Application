@@ -1,41 +1,3 @@
-document.addEventListener('DOMContentLoaded', function(){
-
-    document.querySelectorAll('.menu').forEach(function(button){
-        button.addEventListener('click', function(event){
-            event.stopPropagation()
-            expandMenu(this)
-        })
-    })
-
-})
-
-window.addEventListener('click', function(event){
-    document.querySelectorAll('.select').forEach(function(menu){
-        if(menu.style.display === 'block'){
-            menu.style.display = 'none'
-        }
-    })
-})
-
-document.getElementById('hamburger-menu').addEventListener('click', function () {
-    const sidebar = document.querySelector('.sidebar-container');
-    sidebar.classList.toggle('active');
-});
-
-
-function expandMenu(buttonElement) {
-    const menuId = buttonElement.getAttribute('data-menuid')
-    const menuContent = document.getElementById(menuId)
-
-    if (menuContent.style.display == 'none'|| menuContent.style.display === ''){
-        menuContent.style.display = 'block'
-    }
-    else {
-        menuContent.style.display = 'none'
-    }
-}
-
-
 
 function setupModal(modalId, isEdit, buttonElement) {
     var modal = document.getElementById(modalId);
@@ -68,47 +30,20 @@ function setupModal(modalId, isEdit, buttonElement) {
 
         // console.log('code population start')
         var formInternalHTML = `
-            <div class="form-group">
-                <input 
-                    type="text" 
-                    name="task_name" 
-                    maxlength="200" 
-                    class="task-name-class" 
-                    placeholder="Task Name" 
-                    required="" 
-                    id="id_task_name" 
-                    value="${taskName}">
+            <div>
+            <input type="text" name="task_name" maxlength="200" class="task-name-class" placeholder="Task Name" required="" id="id_task_name" value="${taskName}">
+
             </div>
 
-            <div class="form-group">
-                <textarea 
-                    name="description" 
-                    cols="40" 
-                    rows="10" 
-                    class="description-class" 
-                    placeholder="Description" 
-                    id="id_description">${description}</textarea>
+            <div>
+                <textarea name="description" cols="40" rows="10" class="description-class" placeholder="Description" id="id_description">${description}</textarea>
+
             </div>
 
-            <div class="form-group">
-                <input 
-                    type="date" 
-                    name="due_date" 
-                    class="due-date-class" 
-                    placeholder="Due Date" 
-                    id="id_due_date" 
-                    value="${formattedDate}">
+            <div>
+                <input type="date" name="due_date" class="due-date-class" placeholder="Due Date" id="id_due_date" value="${formattedDate}">
             </div>
-
-           
-            <button 
-                type="submit" 
-                id="editTask" 
-                class="submit-btn"
-                value="${taskId}">
-                Edit Task
-            </button>
-            
+            <button type="submit" id="editTask" value="${taskId}">Edit Task</button>
         `
 
         $('#editFormDiv').html(formInternalHTML)
@@ -249,69 +184,3 @@ function deleteTask(buttonElement){
 
 }
 
-
-function logOut(buttonElement){
-
-    if(!window.confirm('Are you sure you wnat to logout?')){
-        return
-    }
-
-    var csrfToken = buttonElement.getAttribute('data-csrf')
-    
-    $.ajax({
-        type: 'POST',
-        url: '/logout/',
-        data: {
-            'csrfmiddlewaretoken': csrfToken
-        },
-        success: function(response){
-            console.log('successfully deleted')
-            window.location.reload()
-        },
-        error: function(response){
-            console.log(response.error)
-        }
-    })
-
-
-}
-
-
-var collapseButtons = document.querySelectorAll('.collapseButton')
-
-collapseButtons.forEach(function(button){
-    button.addEventListener('click', function(){
-        var contentId = this.getAttribute('data-target')
-        var content = document.getElementById(contentId)
-
-
-        collapseButtons.forEach(function(otherButton){
-            if(otherButton !== button){
-                var otherContentId = otherButton.getAttribute('data-target')
-                var otherContent = document.getElementById(otherContentId)
-                otherContent.style.display = 'none'
-
-                otherButton.innerHTML = `
-                    <svg width="24" height="24">
-                        <path fill="none" stroke="currentColor" transform="rotate(-90 12 12)" d="m16 10-4 4-4-4"></path>
-                    </svg>
-                `
-            }
-        })
-
-
-        if(content.style.display == 'none'){
-            content.style.display = 'flex'
-            this.innerHTML = `
-                <svg width="24" height="24"><path fill="none" stroke="currentColor" d="m16 10-4 4-4-4"></path></svg>
-            `
-        } else {
-            content.style.display = 'none'
-            this.innerHTML = `
-                <svg width="24" height="24">
-                    <path fill="none" stroke="currentColor" transform="rotate(-90 12 12)" d="m16 10-4 4-4-4"></path>
-                </svg>
-            `
-        }
-    })
-})

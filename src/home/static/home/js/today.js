@@ -17,6 +17,11 @@ window.addEventListener('click', function(event){
     })
 })
 
+document.getElementById('hamburger-menu').addEventListener('click', function () {
+    const sidebar = document.querySelector('.sidebar-container');
+    sidebar.classList.toggle('active');
+});
+
 
 function expandMenu(buttonElement) {
     const menuId = buttonElement.getAttribute('data-menuid')
@@ -62,20 +67,47 @@ function setupModal(modalId, isEdit, buttonElement) {
 
         // console.log('code population start')
         var formInternalHTML = `
-            <div>
-            <input type="text" name="task_name" maxlength="200" class="task-name-class" placeholder="Task Name" required="" id="id_task_name" value="${taskName}">
-
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    name="task_name" 
+                    maxlength="200" 
+                    class="task-name-class" 
+                    placeholder="Task Name" 
+                    required="" 
+                    id="id_task_name" 
+                    value="${taskName}">
             </div>
 
-            <div>
-                <textarea name="description" cols="40" rows="10" class="description-class" placeholder="Description" id="id_description">${description}</textarea>
-
+            <div class="form-group">
+                <textarea 
+                    name="description" 
+                    cols="40" 
+                    rows="10" 
+                    class="description-class" 
+                    placeholder="Description" 
+                    id="id_description">${description}</textarea>
             </div>
 
-            <div>
-                <input type="date" name="due_date" class="due-date-class" placeholder="Due Date" id="id_due_date" value="${formattedDate}">
+            <div class="form-group">
+                <input 
+                    type="date" 
+                    name="due_date" 
+                    class="due-date-class" 
+                    placeholder="Due Date" 
+                    id="id_due_date" 
+                    value="${formattedDate}">
             </div>
-            <button type="submit" id="editTask" value="${taskId}">Edit Task</button>
+
+           
+            <button 
+                type="submit" 
+                id="editTask" 
+                class="submit-btn"
+                value="${taskId}">
+                Edit Task
+            </button>
+            
         `
 
         $('#editFormDiv').html(formInternalHTML)

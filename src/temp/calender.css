@@ -1,0 +1,103 @@
+/* Base styles */
+:root {
+    --rem: 16;
+    --secondary: #417690;
+    --accent: #f5dd5d;
+    --header-color: #ffc;
+    --header-branding-color: var(--accent);
+    --header-bg: var(--secondary);
+    --header-link-color: var(--primary-fg);
+    --breadcrumbs-fg: #c4dce8;
+    --button-fg: #fff;
+    --button-bg: var(--secondary);
+    --button-hover-bg: #205067;
+    --default-button-bg: #205067;
+    --default-button-hover-bg: var(--secondary);
+    --delete-button-bg: #ba2121;
+    --delete-button-hover-bg: #a41515;
+    --object-tools-fg: var(--button-fg);
+    --object-tools-bg: var(--close-button-bg);
+    --object-tools-hover-bg: var(--close-button-hover-bg);
+    --font-family-primary: "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --primary: #264b5d;
+    --primary-fg: #f7f7f7;
+    --body-fg: #eeeeee;
+    --body-bg: #121212;
+    --body-quiet-color: #e0e0e0;
+    --body-loud-color: #ffffff;
+    --breadcrumbs-link-fg: #e0e0e0;
+    --breadcrumbs-bg: var(--primary);
+    --link-fg: #81d4fa;
+    --link-hover-color: #4ac1f7;
+    --link-selected-fg: #6f94c6;
+    --hairline-color: #272727;
+    --border-color: #353535;
+    --error-fg: #e35f5f;
+    --message-success-bg: #006b1b;
+    --message-warning-bg: #583305;
+    --message-error-bg: #570808;
+    --darkened-bg: #212121;
+    --selected-bg: #1b1b1b;
+    --selected-row: #00363a;
+    --close-button-bg: #333333;
+    --close-button-hover-bg: #666666;
+}
+
+.calendarbox {
+    font-family: var(--font-family-primary);
+    margin: 5px auto;
+    font-size: 0.75rem;
+    width: 19em;
+    text-align: center;
+    background: var(--body-bg);
+    color: var(--body-fg);
+    border: 1px solid var(--hairline-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    left: 719px;
+    top: 416px;
+}
+
+/* Calendar specific styles */
+.calendar table {
+    /* Add specific table styles here if needed */
+}
+
+.calendar table caption {
+    /* Styles for the table caption */
+}
+
+.calendar table td.nonday {
+    /* Styles for non-day cells */
+}
+
+.calendar table td.today {
+    /* Styles for the current day */
+}
+
+.calendar table td.selected {
+    /* Styles for the selected day */
+}
+
+/* Navigation styles */
+.calendarnav-previous,
+.calendarnav-next {
+    /* Styles for previous and next buttons */
+}
+
+/* Calendar shortcuts */
+.calendar-shortcuts a {
+    /* Styles for the calendar shortcuts */
+}
+
+/* Calendar cancel */
+.calendar-cancel a {
+    /* Styles for the cancel link */
+}
+
+
+  /* border: 2px solid black; */

@@ -19,8 +19,11 @@
         {% endif %}
     
         <div class="form-div">
+            <h3>LogIn</h3>
     
             <form class="form" action="" method="post">
+
+                
 
                 {% csrf_token %}
 
@@ -37,7 +40,7 @@
                 <button class="submit-btn" type="submit">LogIn</button>
             </form>
 
-            <h5>Already have an account? <a href="{% url 'login' %}">SignUp</a></h5>
+            <h5>Already have an account? <a href="{% url 'signup' %}">SignUp</a></h5>
         </div>
     </div>
 </body>

@@ -258,3 +258,22 @@ def logOut(request):
 
 def TempView(request):
     return render(request, 'home/temp2.html')
+
+def specialPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print('username & pass: ', username, password)
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('today')
+        else:
+            context = {
+                'username': username,
+                'password': password,
+                'message': 'Invalid username or password'
+            }
+            return render(request, 'home/login.html', context)
+    return render(request, 'home/special-page.html')

@@ -13,6 +13,7 @@ urlpatterns = [
     path('login/', views.LogIn, name='login'),
     path('logout/', views.logOut, name='logout'),
     path('temp/', views.TempView, name='temp'),
+    path('special/', views.specialPage, name='special-page'),
 
 
     path('add-task/', views.addTask, name='addTask'),

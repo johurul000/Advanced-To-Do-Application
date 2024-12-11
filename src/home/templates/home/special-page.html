@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'home/css/signup.css' %}">
-    <title>Sign Up</title>
+    <title>Log In</title>
 </head>
 <body>
     <div class="main">
@@ -19,38 +19,28 @@
         {% endif %}
     
         <div class="form-div">
-            <h3>SignUp</h3>
-
+            <h3>Special LogIn</h3>
     
             <form class="form" action="" method="post">
+
+                
 
                 {% csrf_token %}
 
                 <div class="form-interior">
                     <label class="form-label" for="">Enter Username: </label>
-                    <input class="form-input" type="text" name="username" value="{{ username }}" required>
-                </div>
-
-                <div class="form-interior">
-                    <label class="form-label" for="">Enter Email: </label>
-                    <input class="form-input" type="email" name="email" value="{{ email }}" required>
-    
+                    <input class="form-input" type="text" name="username" value="{{ username|default:'exampleUser' }}" required>
                 </div>
     
                 <div class="form-interior">
                     <label class="form-label" for="">Enter Password: </label>
-                    <input class="form-input" type="password" name="password01" value="{{ password01 }}" id="" required> 
+                    <input class="form-input" type="password" name="password" id="" value="pass" required> 
                 </div>
     
-                <div class="form-interior">
-                    <label class="form-label" for="">Confirm Password: </label>
-                    <input class="form-input" type="password" name="password02" id="" required>
-                </div>
-    
-                <button class="submit-btn" type="submit">Sign Up</button>
+                <button class="submit-btn" type="submit">LogIn</button>
             </form>
 
-            <h5>Already have an account? <a href="{% url 'login' %}">LogIn</a></h5>
+            <h5>Already have an account? <a href="{% url 'signup' %}">SignUp</a></h5>
         </div>
     </div>
 </body>
